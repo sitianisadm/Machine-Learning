@@ -11,6 +11,7 @@ Dataset yang digunakan merupakan dataset **Predict People Personality Types** ya
 Data terdiri dari beberapa atribut, termasuk data kategorikal seperti:
 - **Gender**
 - **Interest**
+  
 serta atribut lain yang digunakan sebagai fitur dalam proses klasifikasi.
 
 ## Workflow
@@ -142,7 +143,7 @@ from sklearn.metrics import (
 - Visual Studio Code
 
 ## Hasil
-Hasil akhir dari project berupa model **Random Forest Classification** yang digunakan untuk memprediksi tipe kepribadian berdasarkan fitur pada dataset.
+Hasil akhir dari project berupa model **Random Forest Classification** dan **Logistic Regression** yang digunakan untuk memprediksi tipe kepribadian berdasarkan fitur pada dataset.
 Performa model kemudian diketahui melalui hasil evaluasi menggunakan data testing dan metrik evaluasi klasifikasi.
 
 ## Kesimpulan
