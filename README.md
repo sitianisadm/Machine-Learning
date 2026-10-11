@@ -1,6 +1,6 @@
 # Predict People Personality Types
 Project Machine Learning untuk melakukan prediksi tipe kepribadian seseorang berdasarkan karakteristik yang terdapat pada dataset **Predict People Personality Types**.
-Project ini menggunakan algoritma **Random Forest Classification** untuk melakukan klasifikasi tipe kepribadian berdasarkan data yang telah melalui proses cleaning, splitting, dan preprocessing.
+Project ini menggunakan algoritma **Random Forest Classification** dan **Logistic Regression** untuk melakukan klasifikasi tipe kepribadian berdasarkan data yang telah melalui proses cleaning, splitting, dan preprocessing.
 
 ## Tujuan
 Tujuan dari project ini adalah membangun model Machine Learning yang dapat memprediksi tipe kepribadian seseorang berdasarkan data yang tersedia.
@@ -52,8 +52,8 @@ Kolom **Interest** juga diproses menggunakan **One Hot Encoding** karena memilik
 One Hot Encoding mengubah setiap kategori menjadi kolom baru dengan nilai 0 dan 1 sehingga data dapat diproses oleh model Machine Learning.
 
 ### 5. Modeling
-Algoritma yang digunakan pada tahap modeling adalah **Random Forest Classification**.
-Random Forest merupakan algoritma klasifikasi yang menggunakan beberapa Decision Tree dan menggabungkan hasil dari tree tersebut untuk menghasilkan prediksi.
+Algoritma yang digunakan pada tahap modeling adalah **Random Forest Classification** dan **Logistic Regression**
+Random Forest merupakan algoritma klasifikasi yang menggunakan beberapa Decision Tree dan menggabungkan hasil dari tree tersebut untuk menghasilkan prediksi. dan Logistic Regression algoritma Machine Learning yang digunakan untuk masalah klasifikasi, yaitu untuk memprediksi kategori atau kelas dari suatu data.~
 Model dilatih menggunakan:
 
 ```text
@@ -104,7 +104,7 @@ One Hot Encoding Gender
  ↓
 One Hot Encoding Interest
  ↓
-Random Forest
+Random Forest & Logistic Regression
  ↓
 Prediction
  ↓
@@ -152,4 +152,4 @@ Performa model kemudian diketahui melalui hasil evaluasi menggunakan data testin
 
 ## Kesimpulan
 Project ini menerapkan tahapan Machine Learning mulai dari **Data Loading, Data Cleaning, Data Splitting, Data Processing, Modeling, Prediction, hingga Evaluation**.
-Data kategorikal seperti **Gender** dan **Interest** diproses menggunakan **One Hot Encoding**, kemudian data yang telah diproses digunakan untuk membangun model **Random Forest Classification** untuk melakukan prediksi tipe kepribadian.
+Data kategorikal seperti **Gender** dan **Interest** diproses menggunakan **One Hot Encoding**, kemudian data yang telah diproses digunakan untuk membangun model **Random Forest Classification** dan **Logistic Regression** untuk melakukan prediksi tipe kepribadian.
