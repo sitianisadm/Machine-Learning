@@ -83,11 +83,6 @@ Evaluasi dapat dilakukan menggunakan beberapa metrik, seperti:
 
 Hasil evaluasi digunakan untuk mengetahui seberapa baik model dalam memprediksi tipe kepribadian.
 
-## Algoritma
-Algoritma Machine Learning yang digunakan:
-**Random Forest Classification**
-Random Forest dipilih karena dapat digunakan untuk permasalahan klasifikasi dan mampu menangani berbagai fitur dalam dataset.
-
 ## Preprocessing
 Tahapan preprocessing yang digunakan dalam project:
 
