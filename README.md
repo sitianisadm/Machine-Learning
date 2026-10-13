@@ -12,13 +12,6 @@ Selain membangun model, project ini juga menerapkan penyimpanan model menggunaka
 
 ## Dataset
 
-Dataset yang digunakan merupakan dataset **Predict People Personality Types** yang berisi data karakteristik seseorang yang digunakan sebagai fitur untuk memprediksi tipe kepribadian.
-Data terdiri dari beberapa atribut, termasuk data kategorikal seperti:
-- **Gender**
-- **Interest**
-  
-serta atribut lain yang digunakan sebagai fitur dalam proses klasifikasi.
-
 Dataset yang digunakan adalah **Predict People Personality Types**, yang berisi karakteristik seseorang sebagai fitur untuk memprediksi tipe kepribadian.
 
 Beberapa atribut yang digunakan antara lain:
@@ -27,8 +20,6 @@ Beberapa atribut yang digunakan antara lain:
 - **Interest**: atribut kategorikal yang menunjukkan minat seseorang.
 - **Atribut lainnya**: fitur tambahan yang digunakan dalam proses klasifikasi.
 - **Personality Type**: target yang akan diprediksi oleh model.
-
-Nama kolom dan target mengikuti struktur dataset yang digunakan dalam project.
 
 ## Workflow Machine Learning
 
