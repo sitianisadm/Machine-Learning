@@ -197,21 +197,6 @@ Tahapan pengujian:
 
 Pengujian dilakukan untuk memastikan endpoint dapat menerima input, memproses data, dan mengembalikan hasil prediksi dengan benar.
 
-### Deployment ke server
-
-Untuk penggunaan di luar komputer lokal, aplikasi dapat ditempatkan pada server atau platform hosting yang mendukung Python dan Flask.
-
-Sebelum dipublikasikan, beberapa hal yang perlu diperhatikan:
-
-- Menyiapkan environment dan dependensi yang sesuai.
-- Memastikan file model tersedia pada lokasi yang benar.
-- Menggunakan server WSGI yang sesuai untuk menjalankan aplikasi Flask di lingkungan produksi.
-- Menonaktifkan mode debug pada lingkungan produksi.
-- Menyiapkan konfigurasi port, variabel lingkungan, serta penanganan error.
-- Memastikan endpoint tidak dapat diakses secara sembarangan apabila input atau akses model perlu dibatasi.
-
-Alamat `127.0.0.1` hanya dapat diakses secara lokal dan tidak dengan sendirinya membuat API tersedia di internet.
-
 ## Monitoring Model dan API
 
 Monitoring merupakan proses memantau kondisi aplikasi dan performa model setelah digunakan. Tujuannya adalah mengetahui apakah API berjalan dengan baik dan apakah model masih memberikan hasil yang layak digunakan.
