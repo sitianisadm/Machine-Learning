@@ -23,11 +23,11 @@ Beberapa atribut yang digunakan antara lain:
 
 ## Workflow Machine Learning
 
-### 1. Data Loading
+### Data Loading
 
 Dataset dimuat menggunakan library Pandas untuk membaca dan menampilkan data. Tahap ini dilakukan untuk mengetahui struktur dataset, jumlah data, nama kolom, tipe data, serta informasi awal yang diperlukan sebelum proses pengolahan data.
 
-### 2. Data Cleaning
+### Data Cleaning
 
 Tahap Data Cleaning dilakukan untuk memastikan dataset siap digunakan dalam proses Machine Learning. Pemeriksaan meliputi:
 
@@ -38,7 +38,7 @@ Tahap Data Cleaning dilakukan untuk memastikan dataset siap digunakan dalam pros
 
 Berdasarkan pemeriksaan pada dataset yang digunakan, tidak ditemukan missing value sehingga tidak diperlukan proses pengisian atau penghapusan data berdasarkan missing value.
 
-### 3. Data Splitting
+### Data Splitting
 
 Dataset dibagi menjadi data fitur (**X**) dan data target (**y**). Selanjutnya, data dibagi menjadi data training dan data testing menggunakan `train_test_split`.
 
@@ -47,7 +47,7 @@ Dataset dibagi menjadi data fitur (**X**) dan data target (**y**). Selanjutnya, 
 
 Pembagian data dilakukan sebelum proses preprocessing yang mempelajari parameter dari data, seperti encoding dan scaling, untuk menghindari data leakage. Preprocessing kemudian dipelajari dari data training dan diterapkan pada data testing melalui pipeline.
 
-### 4. Data Processing
+### Data Processing
 
 Tahap Data Processing dilakukan untuk mengubah fitur agar dapat digunakan oleh algoritma Machine Learning.
 
@@ -60,110 +60,15 @@ Contoh inisialisasi encoder:
 ```python
 from sklearn.preprocessing import OneHotEncoder
 
-<<<<<<< HEAD
 #### Encoding Interest
 Kolom **Interest** juga diproses menggunakan **One Hot Encoding** karena memiliki beberapa kategori.
 One Hot Encoding mengubah setiap kategori menjadi kolom baru dengan nilai 0 dan 1 sehingga data dapat diproses oleh model Machine Learning.
-
-### 5. Modeling
-Algoritma yang digunakan pada tahap modeling adalah **Random Forest Classification** dan **Logistic Regression**
-Random Forest merupakan algoritma klasifikasi yang menggunakan beberapa Decision Tree dan menggabungkan hasil dari tree tersebut untuk menghasilkan prediksi. dan Logistic Regression algoritma Machine Learning yang digunakan untuk masalah klasifikasi, yaitu untuk memprediksi kategori atau kelas dari suatu data.~
-Model dilatih menggunakan:
-
-```text
-X_train
-y_train
-```
-
-Kemudian digunakan untuk melakukan prediksi terhadap:
-
-```text
-X_test
-```
-
-### 6. Prediction
-Setelah model selesai dilatih, model digunakan untuk memprediksi tipe kepribadian pada data testing.
-Hasil prediksi kemudian dibandingkan dengan nilai aktual pada **y_test** untuk mengetahui kemampuan model dalam melakukan klasifikasi.
-
-### 7. Model Evaluation
-Evaluasi dilakukan untuk mengetahui performa model Random Forest dalam melakukan klasifikasi.
-Evaluasi dapat dilakukan menggunakan beberapa metrik, seperti:
-
-- Accuracy
-- Precision
-- Recall
-- F1-Score
-- Confusion Matrix
-
-Hasil evaluasi digunakan untuk mengetahui seberapa baik model dalam memprediksi tipe kepribadian.
-
-## Preprocessing
-Tahapan preprocessing yang digunakan dalam project:
-
-```text
-Data
- ↓
-Data Cleaning
- ↓
-Data Splitting
- ↓
-Data Processing
- ↓
-One Hot Encoding Gender
- ↓
-One Hot Encoding Interest
- ↓
-Random Forest & Logistic Regression
- ↓
-Prediction
- ↓
-Evaluation
-```
-
-## Library yang Digunakan
-Project ini menggunakan beberapa library Python:
-
-```python
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import StratifiedKFold, cross_val_score
-from sklearn.metrics import (
-    accuracy_score,
-    precision_score,
-    recall_score,
-    f1_score,
-    classification_report,
-    confusion_matrix,
-    ConfusionMatrixDisplay
-=======
-encoder = OneHotEncoder(
-    handle_unknown="ignore",
-    sparse_output=False,
-    dtype=int
->>>>>>> 0c95c8b (Update complete machine learning project)
-)
-```
-
-#### One Hot Encoding Interest
-
-Kolom `Interest` juga diproses menggunakan One Hot Encoding karena dapat memiliki beberapa kategori. Setiap kategori diubah menjadi kolom tersendiri sehingga dapat digunakan sebagai fitur numerik.
-
-Dalam implementasi pipeline, encoder sebaiknya dipelajari dari data training dan digunakan kembali untuk data testing maupun data baru. Dengan demikian, kategori dan struktur fitur tetap konsisten.
 
 #### Preprocessing Pipeline
 
 Pipeline dan `ColumnTransformer` digunakan untuk menggabungkan preprocessing dengan model. Pendekatan ini membantu menjaga agar tahapan preprocessing yang digunakan saat training tetap sama ketika model digunakan untuk prediksi.
 
-### 5. Modeling
+### Modeling
 
 Project ini menggunakan dua algoritma klasifikasi.
 
@@ -177,11 +82,11 @@ Logistic Regression merupakan algoritma Machine Learning yang dapat digunakan un
 
 Kedua model dilatih menggunakan `X_train` dan `y_train`, kemudian dievaluasi menggunakan data testing. Hasil evaluasi dapat digunakan untuk membandingkan performa kedua algoritma.
 
-### 6. Prediction
+### Prediction
 
 Setelah proses training selesai, model digunakan untuk memprediksi tipe kepribadian pada data testing. Hasil prediksi dibandingkan dengan label aktual pada `y_test` untuk mengetahui kemampuan model dalam melakukan klasifikasi.
 
-### 7. Model Evaluation
+### Model Evaluation
 
 Evaluasi dilakukan untuk mengetahui performa model menggunakan data testing. Metrik evaluasi yang digunakan meliputi:
 
@@ -336,15 +241,6 @@ Library tambahan seperti `requests` digunakan jika diperlukan untuk pengujian AP
 - Visual Studio Code
 - Git dan GitHub
 
-<<<<<<< HEAD
-## Hasil
-Hasil akhir dari project berupa model **Random Forest Classification** dan **Logistic Regression** yang digunakan untuk memprediksi tipe kepribadian berdasarkan fitur pada dataset.
-Performa model kemudian diketahui melalui hasil evaluasi menggunakan data testing dan metrik evaluasi klasifikasi.
-
-## Kesimpulan
-Project ini menerapkan tahapan Machine Learning mulai dari **Data Loading, Data Cleaning, Data Splitting, Data Processing, Modeling, Prediction, hingga Evaluation**.
-Data kategorikal seperti **Gender** dan **Interest** diproses menggunakan **One Hot Encoding**, kemudian data yang telah diproses digunakan untuk membangun model **Random Forest Classification** dan **Logistic Regression** untuk melakukan prediksi tipe kepribadian.
-=======
 ## Hasil Project
 
 Project ini menghasilkan pipeline Machine Learning untuk melakukan klasifikasi tipe kepribadian menggunakan Random Forest dan Logistic Regression.
@@ -358,4 +254,3 @@ Pengujian API dilakukan untuk memastikan proses pengiriman input dan pengembalia
 Project Predict People Personality Types menerapkan tahapan Machine Learning mulai dari data loading, data cleaning, data splitting, data processing, modeling, prediction, hingga evaluation. Fitur kategorikal seperti Gender dan Interest diproses menggunakan One Hot Encoding agar dapat digunakan dalam proses klasifikasi.
 
 Algoritma Random Forest Classification dan Logistic Regression digunakan untuk membangun serta membandingkan model prediksi. Joblib digunakan untuk menyimpan model yang telah dilatih, sedangkan Flask digunakan untuk mengintegrasikan model ke dalam API agar dapat menerima input dan memberikan hasil
->>>>>>> 0c95c8b (Update complete machine learning project)
