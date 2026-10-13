@@ -59,6 +59,7 @@ Contoh inisialisasi encoder:
 
 ```python
 from sklearn.preprocessing import OneHotEncoder
+```
 
 #### Encoding Interest
 Kolom **Interest** juga diproses menggunakan **One Hot Encoding** karena memiliki beberapa kategori.
