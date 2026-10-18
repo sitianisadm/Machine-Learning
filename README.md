@@ -1,168 +1,65 @@
 # Predict People Personality Types
 
-Project Machine Learning untuk memprediksi tipe kepribadian seseorang berdasarkan karakteristik yang terdapat pada dataset **Predict People Personality Types**.
-
-Project ini menggunakan algoritma **Random Forest Classification** dan **Logistic Regression** untuk melakukan klasifikasi tipe kepribadian. Proses pengembangan model meliputi data loading, data cleaning, data splitting, preprocessing, modeling, prediction, evaluation, penyimpanan model menggunakan Joblib, serta deployment model melalui API berbasis Flask.
-
-## Tujuan
-
-Tujuan project ini adalah membangun model Machine Learning yang dapat memprediksi tipe kepribadian seseorang berdasarkan data yang tersedia. Model dilatih menggunakan data training dan diuji menggunakan data testing untuk mengetahui performanya dalam melakukan klasifikasi.
-
-Selain membangun model, project ini juga menerapkan penyimpanan model menggunakan Joblib agar model yang telah dilatih dapat digunakan kembali tanpa perlu melakukan training setiap kali aplikasi dijalankan. Model kemudian diintegrasikan ke dalam API Flask agar dapat menerima input dan mengembalikan hasil prediksi.
+Project Machine Learning untuk memprediksi tipe kepribadian seseorang menggunakan algoritma **Random Forest Classification** dan **Logistic Regression**. Model terbaik disimpan menggunakan Joblib, di-deploy melalui Flask API, dan dilengkapi dashboard monitoring menggunakan Streamlit.
 
 ## Dataset
-
 Dataset yang digunakan adalah **Predict People Personality Types**, yang berisi karakteristik seseorang sebagai fitur untuk memprediksi tipe kepribadian.
 
-Beberapa atribut yang digunakan antara lain:
+Dataset yang digunakan berasal dari Kaggle:
 
-- **Gender**: atribut kategorikal yang menunjukkan jenis kelamin.
-- **Interest**: atribut kategorikal yang menunjukkan minat seseorang.
-- **Atribut lainnya**: fitur tambahan yang digunakan dalam proses klasifikasi.
-- **Personality Type**: target yang akan diprediksi oleh model.
+[Predict People Personality Types](https://www.kaggle.com/datasets/stealthtechnologies/predict-people-personality-types)
+
+Fitur yang digunakan meliputi `Age`, `Gender`, `Education`, `Introversion Score`, `Sensing Score`, `Thinking Score`, `Judging Score`, dan `Interest`. Target klasifikasi adalah `Personality`.
 
 ## Workflow Machine Learning
 
-### Data Loading
+1. **Data Loading:** membaca dataset menggunakan Pandas.
+2. **Data Cleaning:** memeriksa struktur data, missing value, dan kesesuaian fitur.
+3. **Data Splitting:** membagi data menjadi 80% training dan 20% testing dengan stratifikasi.
+4. **Preprocessing:** menggunakan One Hot Encoding untuk fitur `Gender` dan `Interest`, serta Pipeline dan ColumnTransformer.
+5. **Modeling:** melatih Random Forest dan Logistic Regression.
+6. **Prediction:** memprediksi tipe kepribadian menggunakan data testing.
+7. **Evaluation:** membandingkan performa kedua model.
+8. **Model Persistence:** menyimpan model terpilih menggunakan Joblib.
+9. **Deployment:** menyediakan API prediksi menggunakan Flask.
+10. **Monitoring:** mencatat aktivitas prediksi ke CSV dan menampilkannya melalui dashboard Streamlit.
 
-Dataset dimuat menggunakan library Pandas untuk membaca dan menampilkan data. Tahap ini dilakukan untuk mengetahui struktur dataset, jumlah data, nama kolom, tipe data, serta informasi awal yang diperlukan sebelum proses pengolahan data.
+## Hasil Evaluasi Model
+Evaluasi dilakukan menggunakan data testing dengan metrik Accuracy, Precision, Recall, dan F1-Score.
 
-### Data Cleaning
+| Model | Accuracy | Precision | Recall | F1-Score |
+|---|---:|---:|---:|---:|
+| Random Forest | 0.9000 | 0.9010 | 0.9000 | 0.9000 |
+| Logistic Regression | 0.8533 | 0.8552 | 0.8533 | 0.8533 |
 
-Tahap Data Cleaning dilakukan untuk memastikan dataset siap digunakan dalam proses Machine Learning. Pemeriksaan meliputi:
+Berdasarkan hasil evaluasi, **Random Forest dipilih sebagai model terbaik** dengan accuracy sebesar 90%.
 
-- Memeriksa struktur dan tipe data.
-- Memeriksa missing value.
-- Memeriksa data duplikat dan data yang tidak sesuai.
-- Memastikan fitur dan target tersedia sesuai kebutuhan model.
+## Model Persistence dan Deployment
+Model Random Forest disimpan dalam file `model_personality.pkl` menggunakan Joblib agar dapat digunakan tanpa training ulang.
+Flask API menyediakan dua endpoint:
 
-Berdasarkan pemeriksaan pada dataset yang digunakan, tidak ditemukan missing value sehingga tidak diperlukan proses pengisian atau penghapusan data berdasarkan missing value.
-
-### Data Splitting
-
-Dataset dibagi menjadi data fitur (**X**) dan data target (**y**). Selanjutnya, data dibagi menjadi data training dan data testing menggunakan `train_test_split`.
-
-- **X_train dan y_train** digunakan untuk melatih model.
-- **X_test dan y_test** digunakan untuk menguji model menggunakan data yang tidak digunakan dalam proses pelatihan.
-
-Pembagian data dilakukan sebelum proses preprocessing yang mempelajari parameter dari data, seperti encoding dan scaling, untuk menghindari data leakage. Preprocessing kemudian dipelajari dari data training dan diterapkan pada data testing melalui pipeline.
-
-### Data Processing
-
-Tahap Data Processing dilakukan untuk mengubah fitur agar dapat digunakan oleh algoritma Machine Learning.
-
-#### One Hot Encoding Gender
-
-Kolom `Gender` diproses menggunakan One Hot Encoding untuk mengubah setiap kategori menjadi kolom numerik dengan nilai 0 dan 1.
-
-Contoh inisialisasi encoder:
-
-```python
-from sklearn.preprocessing import OneHotEncoder
-```
-
-#### Encoding Interest
-Kolom **Interest** juga diproses menggunakan **One Hot Encoding** karena memiliki beberapa kategori.
-One Hot Encoding mengubah setiap kategori menjadi kolom baru dengan nilai 0 dan 1 sehingga data dapat diproses oleh model Machine Learning.
-
-#### Preprocessing Pipeline
-
-Pipeline dan `ColumnTransformer` digunakan untuk menggabungkan preprocessing dengan model. Pendekatan ini membantu menjaga agar tahapan preprocessing yang digunakan saat training tetap sama ketika model digunakan untuk prediksi.
-
-### Modeling
-
-Project ini menggunakan dua algoritma klasifikasi.
-
-**Random Forest Classification**
-
-Random Forest merupakan algoritma yang menggabungkan hasil dari sejumlah Decision Tree untuk menghasilkan prediksi. Algoritma ini dapat digunakan untuk mempelajari pola hubungan antara fitur dan target kepribadian.
-
-**Logistic Regression**
-
-Logistic Regression merupakan algoritma Machine Learning yang dapat digunakan untuk klasifikasi. Model mempelajari hubungan antara fitur dan kelas target untuk menentukan kelas prediksi.
-
-Kedua model dilatih menggunakan `X_train` dan `y_train`, kemudian dievaluasi menggunakan data testing. Hasil evaluasi dapat digunakan untuk membandingkan performa kedua algoritma.
-
-### Prediction
-
-Setelah proses training selesai, model digunakan untuk memprediksi tipe kepribadian pada data testing. Hasil prediksi dibandingkan dengan label aktual pada `y_test` untuk mengetahui kemampuan model dalam melakukan klasifikasi.
-
-### Model Evaluation
-
-Evaluasi dilakukan untuk mengetahui performa model menggunakan data testing. Metrik evaluasi yang digunakan meliputi:
-
-- **Accuracy**: persentase prediksi yang benar dari seluruh data pengujian.
-- **Precision**: ketepatan model ketika memprediksi suatu kelas.
-- **Recall**: kemampuan model menemukan data yang termasuk dalam suatu kelas.
-- **F1-Score**: rata-rata harmonis antara precision dan recall.
-- **Confusion Matrix**: tabel untuk melihat perbandingan antara kelas aktual dan kelas prediksi.
-
-Hasil evaluasi Random Forest dan Logistic Regression dapat digunakan untuk menentukan model yang akan dipilih untuk deployment. Pemilihan model dilakukan berdasarkan hasil pengujian, bukan hanya berdasarkan jenis algoritmanya.
-
-## Model Persistence Menggunakan Joblib
-
-Joblib digunakan untuk menyimpan model Machine Learning yang telah dilatih ke dalam file agar dapat dimuat kembali tanpa perlu melakukan training ulang setiap kali aplikasi dijalankan.
-
-Dalam project ini, model disimpan dalam format `.pkl`. Pipeline yang disimpan sebaiknya mencakup preprocessing dan estimator sehingga input baru diproses dengan cara yang sama seperti ketika model dilatih.
-
-### Menyimpan model
-
-Contoh penyimpanan model Random Forest setelah proses training selesai:
-
-```python
-import joblib
-
-# Menyimpan pipeline Random Forest yang telah dilatih
-joblib.dump(rf_model, "model_personality.pkl")
-```
-
-Jika model yang dipilih adalah Logistic Regression, objek yang disimpan dapat diganti menjadi `lr_model`.
-
-### Memuat model
-
-Model yang sudah disimpan dapat dimuat kembali menggunakan:
-
-```python
-import joblib
-
-# Memuat model yang telah disimpan
-model = joblib.load("model_personality.pkl")
-```
-
-Setelah dimuat, model dapat digunakan untuk melakukan prediksi tanpa perlu menjalankan training kembali.
-
-**Catatan:** objek yang disimpan harus sudah dilatih. File model juga sebaiknya dimuat menggunakan versi library yang kompatibel dengan versi ketika model disimpan. File Joblib hanya boleh dimuat dari sumber yang tepercaya karena proses pemuatan dapat mengeksekusi kode.
-
-## Deployment Model Menggunakan Flask
-
-Deployment merupakan proses mengintegrasikan model Machine Learning ke dalam aplikasi agar dapat digunakan untuk menerima input dan memberikan hasil prediksi.
-
-Pada project ini, Flask digunakan untuk menyediakan API yang menghubungkan model Machine Learning dengan aplikasi atau client yang mengirimkan data.
-
-### Alur deployment
-
-1. Model yang telah dilatih disimpan menggunakan Joblib.
-2. Aplikasi Flask memuat file model yang telah disimpan.
-3. Client mengirimkan input dalam format JSON ke endpoint API.
-4. Flask memproses input dan meneruskannya ke model.
-5. Model menghasilkan prediksi tipe kepribadian.
-6. Flask mengembalikan hasil prediksi dalam format JSON.
-
-### Menjalankan aplikasi Flask secara lokal
-
-Pastikan virtual environment sudah aktif dan seluruh dependensi telah terpasang. Kemudian jalankan:
+- `POST /predict` — memprediksi satu data.
+- `POST /predict_batch` — memprediksi banyak data, maksimal 500 baris per request.
 
 ```bash
-python app.py
+python .\deployment\app.py
 ```
 
-Jika aplikasi berhasil dijalankan, Flask akan menampilkan alamat lokal, misalnya:
+API lokal tersedia di `http://127.0.0.1:5000`.
 
-```text
-http://127.0.0.1:5000
+## Pengujian Batch dan Monitoring
+
+Pengujian batch dilakukan menggunakan `deployment/test_batch.py`, dengan hasil prediksi disimpan ke `hasil_prediksi_batch.csv`. Pengujian yang dilakukan berhasil memproses 43.744 data melalui API.
+
+Monitoring menggunakan `deployment/monitoring.py` untuk membaca log prediksi pada `deployment/monitoring.csv`. Log mencakup waktu prediksi, hasil klasifikasi, probabilitas, data input, dan status pemrosesan.
+
+Jalankan dashboard pada terminal terpisah:
+
+```bash
+streamlit run .\deployment\monitoring.py
 ```
 
-Alamat tersebut digunakan untuk pengujian API pada komputer yang sama.
+File `monitoring.csv` dibuat otomatis ketika API berhasil mencatat prediksi.
 
 ### Endpoint prediksi
 
@@ -216,27 +113,16 @@ Beberapa library yang digunakan dalam project ini meliputi:
 Library tambahan seperti `requests` digunakan jika diperlukan untuk pengujian API.
 
 ## Tools
-
 - Python
-- Pandas
-- NumPy
+- Pandas dan NumPy
 - Scikit-learn
 - Joblib
 - Flask
+- Streamlit
 - Jupyter Notebook
 - Visual Studio Code
 - Git dan GitHub
 
-## Hasil Project
-
-Project ini menghasilkan pipeline Machine Learning untuk melakukan klasifikasi tipe kepribadian menggunakan Random Forest dan Logistic Regression.
-
-Model dievaluasi menggunakan data testing dengan metrik evaluasi klasifikasi. Model yang dipilih dapat disimpan menggunakan Joblib, kemudian dimuat oleh aplikasi Flask untuk menyediakan layanan prediksi melalui API.
-
-Pengujian API dilakukan untuk memastikan proses pengiriman input dan pengembalian hasil prediksi berjalan sesuai implementasi. Monitoring dapat diterapkan untuk memantau ketersediaan API, waktu respons, error, dan performa model apabila tersedia data berlabel terbaru.
-
 ## Kesimpulan
 
-Project Predict People Personality Types menerapkan tahapan Machine Learning mulai dari data loading, data cleaning, data splitting, data processing, modeling, prediction, hingga evaluation. Fitur kategorikal seperti Gender dan Interest diproses menggunakan One Hot Encoding agar dapat digunakan dalam proses klasifikasi.
-
-Algoritma Random Forest Classification dan Logistic Regression digunakan untuk membangun serta membandingkan model prediksi. Joblib digunakan untuk menyimpan model yang telah dilatih, sedangkan Flask digunakan untuk mengintegrasikan model ke dalam API agar dapat menerima input dan memberikan hasil
+Project ini menerapkan tahapan Machine Learning mulai dari pengolahan data, pelatihan dan evaluasi model, penyimpanan model, deployment API, hingga monitoring aktivitas prediksi. Random Forest dipilih karena memberikan hasil evaluasi lebih baik dibandingkan Logistic Regression pada data testing yang digunakan.

@@ -1,2 +1,12 @@
-
+# Model Machine Learning berukuran besar
 model_personality.pkl
+
+# Virtual environment
+.venv/
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Monitoring hasil prediksi
+deployment/monitoring.csv
