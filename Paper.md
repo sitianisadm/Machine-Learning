@@ -1,7 +1,11 @@
 **Nama 			    : Siti Anisa Damayanti**
+
 **NIM			    : 241011402712**
+
 **Kelas			    : 05TPLP020**
+
 **Mata Kuliah		: Machine Learning**
+
 **Dosen Pengampu	: Asep Erlan Maulana, S.Kom., M.Kom**
 
 **MAE (Mean Absolute Error) & MSE (Mean Squared Error)**
